@@ -35,7 +35,7 @@ const TravelBookingLanding = () => {
       country: "France",
       price: "$89",
       image:
-        "https://www.pinterest.com/pin/11822017767194995/",
+        "https://i.pinimg.com/736x/82/44/4f/82444feb326281feb555d334bf24f9ab.jpg",
     },
     {
       name: "Tokyo",
