@@ -35,7 +35,7 @@ const TravelBookingLanding = () => {
       country: "France",
       price: "$89",
       image:
-        "https://imgs.search.brave.com/5xGh3adN4AceFyWxVBoKznAx0cTF5c7Qaf2h5zg2svM/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTMy/OTIxNDY4OC9waG90/by9hdXR1bW4taW4t/cGFyaXMuanBnP3M9/NjEyeDYxMiZ3PTAm/az0yMCZjPW9BaUJS/d1BtYnNKLW56VER5/bzZlbDhEV0VHN2Zy/WDZZSl9sYmR0Tmpj/R0E9",
+        "https://imgs.search.brave.com/5xGh3adN4AceFyWxVBoKznAx0cTF5c7Qaf2h5zg2svM/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTMy/OTIxNDY4OC9waG90/by9hdXR1bW4taW4t/cGFyaXMuanBnP3M9/NjEyeDYxMiZ3PTAm/az0yMCZjPW9BaUJS/d1BtYnNKLW56VER5/bzZlbDhEV0VHN2Zy/WDZZSl9zYmR0Tmpj/R0E9",
     },
     {
       name: "Tokyo",
@@ -169,11 +169,34 @@ const TravelBookingLanding = () => {
               </button>
             </div>
           </div>
+          {/* Mobile Menu */}
+          {isMenuOpen && (
+            <div className="md:hidden mt-2 bg-white rounded-lg shadow-lg py-4 px-6 space-y-4">
+              <a href="#" className="block text-gray-700 hover:text-blue-600">
+                Stays
+              </a>
+              <a href="#" className="block text-gray-700 hover:text-blue-600">
+                Flights
+              </a>
+              <a href="#" className="block text-gray-700 hover:text-blue-600">
+                Car Rentals
+              </a>
+              <a href="#" className="block text-gray-700 hover:text-blue-600">
+                Attractions
+              </a>
+              <button className="w-full text-left text-gray-700 hover:text-blue-600">
+                Sign In
+              </button>
+              <button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-lg mt-2">
+                Sign Up
+              </button>
+            </div>
+          )}
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="relative h-screen overflow-hidden">
+      <section className="relative h-[60vh] xs:h-[70vh] md:h-screen overflow-hidden">
         {/* Background Images */}
         <div className="absolute inset-0">
           {heroImages.map((image, index) => (
@@ -186,31 +209,32 @@ const TravelBookingLanding = () => {
               <img
                 src={image}
                 alt={`Hero ${index + 1}`}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-center"
+                style={{ minHeight: "100%", minWidth: "100%" }}
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
             </div>
           ))}
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-10 flex items-center justify-center h-full">
-          <div className="text-center text-white max-w-4xl mx-auto px-4">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
+        <div className="relative z-10 flex items-center justify-center h-full px-2">
+          <div className="text-center text-white max-w-2xl sm:max-w-4xl mx-auto px-2 sm:px-4">
+            <h1 className="text-2xl xs:text-3xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 animate-fade-in leading-tight">
               Discover Your Next
               <span className="block bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                 Adventure
               </span>
             </h1>
-            <p className="text-xl md:text-2xl mb-12 text-gray-200 max-w-2xl mx-auto">
+            <p className="text-sm xs:text-base sm:text-xl md:text-2xl mb-6 sm:mb-12 text-gray-200 max-w-xl sm:max-w-2xl mx-auto">
               Explore the world's most beautiful destinations with exclusive
               deals and unforgettable experiences
             </p>
 
             {/* Search Widget */}
-            <div className="bg-white/95 backdrop-blur-md rounded-2xl p-6 shadow-2xl max-w-4xl mx-auto">
+            <div className="bg-white/95 backdrop-blur-md rounded-xl sm:rounded-2xl p-3 xs:p-4 sm:p-6 shadow-2xl max-w-full sm:max-w-4xl mx-auto">
               {/* Search Type Tabs */}
-              <div className="flex space-x-2 mb-6">
+              <div className="flex flex-wrap justify-center space-x-1 xs:space-x-2 mb-4 sm:mb-6">
                 {[
                   { id: "stays", label: "Stays", icon: Hotel },
                   { id: "flights", label: "Flights", icon: Plane },
@@ -220,56 +244,58 @@ const TravelBookingLanding = () => {
                   <button
                     key={id}
                     onClick={() => setSearchType(id)}
-                    className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all ${
+                    className={`flex items-center space-x-1 xs:space-x-2 px-2 xs:px-4 py-2 rounded-lg transition-all text-xs xs:text-sm ${
                       searchType === id
-                        ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg"
-                        : "text-gray-700 hover:bg-gray-100"
+                        ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white"
+                        : "text-gray-700 hover:text-blue-600"
                     }`}
                   >
-                    <Icon className="w-4 h-4" />
-                    <span>{label}</span>
+                    <Icon className="w-4 h-4 xs:w-5 xs:h-5" />
+                    <span className="font-medium">{label}</span>
                   </button>
                 ))}
               </div>
 
-              {/* Search Form */}
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              {/* Common Search Fields */}
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 mb-4 sm:mb-6">
                 <div className="relative">
-                  <MapPin className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
                   <input
                     type="text"
-                    placeholder="Where are you going?"
-                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Location"
+                    className="w-full pl-9 pr-3 py-2 xs:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-xs xs:text-sm"
                   />
+                  <MapPin className="absolute left-3 top-2.5 xs:top-3 w-4 h-4 xs:w-5 xs:h-5 text-gray-400" />
                 </div>
                 <div className="relative">
-                  <Calendar className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
                   <input
                     type="date"
-                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full pl-9 pr-3 py-2 xs:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-xs xs:text-sm"
                   />
+                  <Calendar className="absolute left-3 top-2.5 xs:top-3 w-4 h-4 xs:w-5 xs:h-5 text-gray-400" />
                 </div>
                 <div className="relative">
-                  <Calendar className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
                   <input
-                    type="date"
-                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    type="number"
+                    placeholder="Price Range"
+                    className="w-full pl-9 pr-3 py-2 xs:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-xs xs:text-sm"
                   />
+                  <span className="absolute left-3 top-2.5 xs:top-3 text-gray-400">
+                    $
+                  </span>
                 </div>
                 <div className="relative">
-                  <Users className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
-                  <select className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none">
+                  <select className="w-full pl-9 pr-3 py-2 xs:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none text-xs xs:text-sm">
                     <option>2 guests</option>
                     <option>1 guest</option>
                     <option>3 guests</option>
                     <option>4+ guests</option>
                   </select>
-                  <ChevronDown className="absolute right-3 top-3 w-5 h-5 text-gray-400" />
+                  <ChevronDown className="absolute right-3 top-2.5 xs:top-3 w-4 h-4 xs:w-5 xs:h-5 text-gray-400" />
                 </div>
               </div>
 
-              <button className="w-full md:w-auto mt-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all transform hover:scale-105 flex items-center justify-center space-x-2">
-                <Search className="w-5 h-5" />
+              <button className="w-full md:w-auto mt-4 sm:mt-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 xs:px-8 py-2 xs:py-3 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all transform hover:scale-105 flex items-center justify-center space-x-2 text-sm xs:text-base">
+                <Search className="w-4 h-4 xs:w-5 xs:h-5" />
                 <span>Search</span>
               </button>
             </div>
@@ -278,7 +304,7 @@ const TravelBookingLanding = () => {
       </section>
 
       {/* Popular Destinations */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-12 sm:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -323,7 +349,7 @@ const TravelBookingLanding = () => {
       </section>
 
       {/* Featured Hotels */}
-      <section className="py-20">
+      <section className="py-12 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -377,7 +403,7 @@ const TravelBookingLanding = () => {
       </section>
 
       {/* Features */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
+      <section className="py-12 sm:py-20 bg-gradient-to-br from-blue-50 to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
@@ -424,7 +450,7 @@ const TravelBookingLanding = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
+      <section className="py-12 sm:py-20 bg-gradient-to-r from-blue-600 to-purple-600">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-white mb-6">
             Ready to Start Your Journey?
@@ -446,7 +472,7 @@ const TravelBookingLanding = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
+      <footer className="bg-gray-900 text-white py-10 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
